@@ -26,10 +26,17 @@ print(unrate.head(12))
 # plt.ylabel("Unemployment Rate")
 # plt.title("Monthly Unemployment Trends, 1948")
 
-fig = plt.figure()
-ax1 = fig.add_subplot(2,1,1)
-ax1.plot(unrate.loc[0:11, "DATE"], unrate.loc[0:11, "VALUE"])
-ax2 = fig.add_subplot(2,1,2)
-ax2.plot(unrate.loc[12:23, "DATE"], unrate.loc[12:23, "VALUE"])
+unrate['MONTH'] = unrate['DATE'].dt.month
+# Let's visualize 5 years worth of unemployment rates on the same subplot.
+# Set the plotting area to a width of 10 inches and a height of 6 inches.
+plot = plt.figure(figsize=(10, 6))
+# Generate the  plots in the base subplot using loops
+colors = ["red", "blue", "green", "orange", "black"]
+# Set the years for the labels
+years = ["1948", "1949", "1950", "1951", "1952"]
+
+for i in range(0,5):
+    plt.plot(unrate.loc[(i*12):(i*12+11), "MONTH"], unrate.loc[(i*12):(i*12+11), "VALUE"], c=colors[i], label=years[i])
+plt.legend(loc='upper left')
 plt.show()
 
