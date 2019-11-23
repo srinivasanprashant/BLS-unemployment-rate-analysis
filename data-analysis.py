@@ -38,5 +38,8 @@ years = ["1948", "1949", "1950", "1951", "1952"]
 for i in range(0,5):
     plt.plot(unrate.loc[(i*12):(i*12+11), "MONTH"], unrate.loc[(i*12):(i*12+11), "VALUE"], c=colors[i], label=years[i])
 plt.legend(loc='upper left')
+plt.title("Monthly Unemployment Trends, 1948-1952")
+plt.xlabel("Month, Integer")
+plt.ylabel("Unemployment Rate, Percent")
 plt.show()
 
